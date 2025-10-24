@@ -276,7 +276,7 @@ std::pair<std::string, Library::BookIdSet> InternalServer::selectBooks(const Req
 {
   // Try old API
   try {
-    auto bookName = request.get_argument("content");
+    auto bookName = request.get_argument("cat");
     try {
       const auto bookIds = Library::BookIdSet{mp_nameMapper->getIdForName(bookName)};
       const auto queryString = request.get_query([&](const std::string& key){return key == "content";}, true);
@@ -345,7 +345,9 @@ SearchInfo InternalServer::getSearchInfo(const RequestContext& request) const
     throw Error(nonParameterizedMessage("confusion-of-tongues"));
   }
 
-  auto pattern = request.get_optional_param<std::string>("pattern", "");
+  //auto pattern = request.get_optional_param<std::string>("pattern", "");
+  
+  std::string pattern = "TEST_CAT";
   GeoQuery geoQuery;
 
   /* Retrive geo search */
