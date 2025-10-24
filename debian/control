@@ -1,0 +1,47 @@
+Source: libkiwix
+Priority: optional
+Maintainer: Kiwix team <kiwix@kiwix.org>
+Build-Depends: debhelper-compat (= 13),
+ meson,
+ pkgconf,
+ libzim-dev (>= 9.0), libzim-dev (<< 10.0),
+ libcurl4-gnutls-dev,
+ libicu-dev,
+ libgtest-dev,
+ libkainjow-mustache-dev,
+ libmicrohttpd-dev,
+ libpugixml-dev,
+ zlib1g-dev
+Standards-Version: 4.5.0
+Section: libs
+Homepage: https://github.com/kiwix/libkiwix
+Rules-Requires-Root: no
+
+Package: libkiwix-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: libkiwix14 (= ${binary:Version}), ${misc:Depends}, python3,
+ libzim-dev (>= 9.0), libzim-dev (<< 10.0),
+ libicu-dev,
+ libpugixml-dev,
+ libcurl4-gnutls-dev,
+ libmicrohttpd-dev,
+ zlib1g-dev
+Description: library of common code for Kiwix (development)
+ Kiwix is an offline Wikipedia reader. libkiwix provides the
+ software core for Kiwix, and contains the code shared by all
+ Kiwix ports (Windows, Linux, OSX, Android, etc.).
+ .
+ This package contains development files.
+
+Package: libkiwix14
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}, aria2
+Conflicts: libkiwix0, libkiwix3, libkiwix9, libkiwix10, libkiwix11, libkiwix12, libkiwix13
+Replaces: libkiwix0, libkiwix3, libkiwix9, libkiwix10, libkiwix11, libkiwix12, libkiwix13
+Description: library of common code for Kiwix
+ Kiwix is an offline Wikipedia reader. libkiwix provides the
+ software core for Kiwix, and contains the code shared by all
+ Kiwix ports (Windows, Linux, OSX, Android, etc.).

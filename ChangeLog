@@ -1,0 +1,682 @@
+libkiwix 14.0.0
+===============
+
+ * Server:
+  - Support of IPv6 (@veloman-yunkan @aryanA101a #1074 #1093)
+  - Better public IP configuration/detection (@sgourdas #1132)
+  - Fix API errors in catalog searches if Xapian keyword in used (@veloman-yunkan #1137)
+  - Clearly define which Web browsers are supported (@kelson42 @rgaudin @jaifroid @benoit74 #1132)
+  - Improve welcome page download buttons (@veloman-yunkan #1094)
+  - Better handling of external (non-HTTP) links (@veloman-yunkan #1123)
+  - Fix book illustration size on welcome page to 48x48 pixels (@veloman-yunkan #1127)
+  - Remove "Multiple Languages" in language filter (@veloman-yunkan #1098)
+  - Stop transforming tags casing (@kelson42 @veloman-yunkan #1079 #1121)
+  - ZIM file size consistently advertised in MiB (@harsha-mangena #1132)
+  - Few new supported languages in the filter (@kelson42 #1080)
+  - Improve accesskeys (@kelson42 #1075)
+  - Add OpenSearch <link> to head of pages (@kelson42 #1070)
+ * Compilation/Packaging:
+  - Multiple fixes around deb packaging (@kelson42 #1108 #1114 #1135)
+  - Generating of libkiwix.pc via Meson (@veloman-yunkan #1133)
+  - Native Windows CI/CD (@mgautierfr @kelson42 #1113 #1125)
+  - Better check (maximum) libzim version (@kelson42 #1124)
+  - Multiple automated tests improvements (@veloman-yunkan #1068 #1067)
+ * Other:
+  - Deleted supported env. variable `$KIWIX_DATA_DIR` and `kiwix::getDataDirectory()` (@sgourdas #1107)
+  - New string slugification for filenames (@shaopenglin #1105)
+  - Multiple improvements around aria2c download mgmt. (@veloman-yunkan #1097)
+
+libkiwix 13.1.0
+===============
+
+ * Server:
+  - Properly translated error pages (@veloman-yunkan #1032)
+  - Properly translated search result page (@veloman-yunkan #1046)
+  - Default UI language is resolved in frontend (@veloman-yunkan #1044)
+  - Better support of older Web browsers by polyfilling replaceAll() (@veloman-yunkan #1054)
+ * New API to migrate bookmarks between books (@mgautierfr #1043)
+ * Fixed compilation on Haiku OS (@Begasus #1048)
+
+libkiwix 13.0.0
+===============
+
+ * Server:
+  - Improved look & feel of kiwix-serve UI (@veloman-yunkan #917 #1021)
+  - Increase tolerance to malformed (control characters) ZIM entry titles (@veloman-yunkan #1023)
+  - API allowing to filter many categories at once (@juuz0 #974)
+  - Cookie-less user language control (@veloman-yumkan #997)
+  - Hack to fix Mirrorbrain based broken magnet URLs (@rgaudin #1001)
+ * Fix handling of books with 'Name' metadata with dots (@mgautier #1016)
+ * New method beautifyFileSize() to provide nice-looking book sizes (@vuuz0 #971)
+ * Fix a few missing includes (@mgautierfr #978)
+ * New functions to read - kiwix-serve - languages and categories streams (@juuz0 #967)
+ * Add support of Fon language (@kelson42 #1013)
+ * C++17 code base compliancy (@mgautierfr #996)
+ * Use everywhere std::shared_ptr in place of raw pointer (@mgautierfr #991)
+ * Do not use [[nodiscard]] attribute on compiler not supporting it (@mgautierfr #1003)
+ * Add a non minified version of autoComplete.js (@mgautierfr #1008)
+ * Multiple CI/CD improvements (@kelson42 #982)
+
+libkiwix 12.1.0
+===============
+
+ * Server:
+  - Introduce a `/nojs` endpoint to browse catalog and zim files with a browser without js (@juuz0 #897)
+  - Translate the viewer (@veloman-yunkan #871 #846)
+  - Display `mul` on tile when zim is multi-languages (@juuz0 #934)
+  - Suggestion links point to the `/content` endpoint (@veloman-yunkan #862)
+  - Correctly compress web fonts in http answers (@kelson42 #856)
+  - Correctly encode link in suggestions (@veloman-yunkan #859 #860 #963)
+  - Correctly encode url redirection (@veloman-yunkan #866 #890)
+  - Properly handle user language, through cookies and http headers (@veloman-yunkan #849 #869)
+  - Fix url encoding (@veloman-yunkan #870)
+  - Fix viewer for viewer for SeaMonkey (@veloman-yunkan #887)
+  - Make the downloader threadsafe (@mgautierfr #886)
+  - Add RSS feed in the main page (pointing to the catalog) (@juuz0 #882 #920)
+  - Correctly set the mimetype for json and ico (@veloman-yunkan #892)
+  - `count=-1` correspond to unlimited count (instead of 0) (@veloman-yunkan #894)
+  - Keep the navigation bar on top (@juuz0 #896)
+  - Make the viewer's iframe "safe" (@veloman-yunkan #906 #930)
+  - Correctly escape search link in XML Opds output (@veloman-yunkan #936)
+  - Store values needed for the viewer js in the url fragment instead of the query string (@juuz0 #907)
+  - Get rid of legacy OPDS API usage in the viewer (@veloman-yunkan #939)
+  - Fix charset encoding declaration in OPDS response MIME types (@veloman-yunkan #942)
+  - Fix PDF in the viewer (@veloman-yunkan #940)
+  - Fix external links handling in the viewer (@veloman-yunkan #959)
+  - Add tests of searching with accents (@mgautierfs #954)
+ * Fix handling of missing illustration in the book (@veloman-yunkan #961)
+ * Add support for multi languages zim files (@veloman-yunkan #904)
+ * Fix includes for openbsd (@bentley #949)
+ * Fix pathes in git to allow git clone on Windows (@adamlamar #868)
+ * Switch to `main` as principal branch (instead of `master`) (@kelson42)
+ * Remove libkiwix android publisher from the repository (@kelson42 #884)
+ * Various fixes of meson and CI. (@mgautierfr @kelson42)
+
+libkiwix 12.0.0
+===============
+
+ * [API Break] Remove wrapper around libzim (@mgautierfr #789)
+ * Allow kiwix-serve to use custom resource files (@veloman-yunkan #779)
+ * Properly handle searchProtocolPrefix when rendering search result (@veloman-yunkan #823)
+ * Prevent search on multi language content (@veloman-yunkan #838)
+ * Use new `zim::Archive::getMediaCount` from libzim (@mgautierfr #836)
+ * Catalog:
+  - Include tags in free text catalog search (@veloman-yunkan #802)
+  - Illustration's url is based on book's uuid (@veloman-yunkan #804)
+  - Cleanup of the opds-dumper (@veloman-yunkan #829)
+  - Allow filtering of catalog content using multiple languages (@veloman-yunkan #841)
+  - Make opds-dumper respect the namemapper (@mgautierfr #837)
+ * Server:
+  - Correctly handle `\` in suggestion json generation (@veloman-yunkan #843)
+  - Better http caching (@veloman-yunkan #833)
+  - Make `/suggest` endpoint thread-safe (@veloman-yunkan #834)
+  - Better redirection of main page (@veloman-yunkan #827)
+  - Remove jquery (@mgautierfr @juuz0 #796)
+  - Better Viewer of zim content :
+    . Introduce `/content` endpoints (@veloman-yunkan #806)
+    . Switch to iframe based content viewer (@veloman-yunkan #716)
+  - Optimised design of the welcome page:
+    . Alignement (@juuz0 @kelson42 #786)
+    . Exit download modal on pressing escape key (@juzz0 #800)
+    . Add favicon for different devices (@juzz0 #805)
+    . Fix auto hidding of the toolbar (@veloman-yunkan #821)
+    . Allow user to filter books by tags in the front page (@juuz0 #711)
+ * CI :
+   - Trigger CI on pull_request (@kelson42 #791)
+   - Drop Ubuntu Impish packaging (@legoktm #825)
+   - Add Ubuntu Kinetic packaging (@legoktm #801)
+ * Testing:
+   - Test ICULanguageInfo (@veloman-yunkan #795)
+   - Introduce fake `test` language to test i18n (@veloman-yunkan #848)
+ * Fix documentation (@kelson42 #816)
+ * Udpate translation (#787 #839 #847)
+
+libkiwix 11.0.0
+===============
+
+ * [server] Add support for internationalization (@veloman-yunkan #679)
+ * [server] Use gzip compression instead of deflat (mgautierfr #757)
+ * [server] Version the static resources. This allow better invalidating
+   browser cache when resources are changed (@veloman-yunkan #712)
+ * [server|front] Use integer to query the host for page length (@juuz0 #772)
+ * [server] Improve multizim search API:
+   - Improvement of the cache system
+   - Better API to select on which books to search in.
+   - SysAdmin is now able to limit the number of book we search in for a multizim search
+ * [server] Introduce a opensearch API for multizim fulltext search
+ * [wrapper] Remove java wrapper
+ * Testing:
+   - Testing of search result pages content (@veloman-yunkan #765)
+   - Better testing structure of xml search result (@veloman-yunkan #780)
+
+libkiwix 10.1.1
+===============
+
+ * Correctly detect the number of article for older zims (<=6) (@mgautier #743)
+ * [server] Fix fulltext search (@mgautierfr #724)
+ * [server][internal] New way to build Error message (@veloman-yunkan #732 #738 #744)
+ * Fix CI (@mgautierfr #736)
+
+libkiwix 10.1.0
+===============
+
+ This release is an important one as it fixes a Xss vulnerability introduced
+ in libkiwix 10.0.0
+
+ * [SECURITY] Fix a Xss attack vulnerability (introduced in 10.0.0) (@juuz0 #721)
+ * [server] Add a option to set a limit on the number of connexion per IP (@kelson42 #700)
+ * [server] Do not display a lang tag in the UI if the book has no language (@juuz0 #706)
+ * [server] Add the book title associated to a search results (@thavelick #705, @mgautierfr #718)
+ * Add `dc:issued` to opds output stream (@veloman-yunkan #715)
+ * Add handling of several languages not provided by ICU (@juuz0 #701)
+ * [server] Add a caching system for search and suggestion (@maneeshpm #620)
+ * Fix cross-compilation (@kelson42 #703)
+ * Add unit-testing of suggestions and error pages (@veloman-yunkan #709 #710 #727)
+ * Better testing system of html response (@veloman-yunkan #725)
+
+libkiwix 10.0.1
+===============
+
+ * [server] The catalog search interpret `count=0` as no limit.
+   This was the case for a long time. This was changed unintentionally
+   (@veloman-yunkan #686)
+ * [server] Correctly generere a human friendly title in the server frontend.
+   (@juuz0 #687, @kelson42 #689)
+ * [server] Fix download button if there is no url do download from.
+   (@juuz0 #691)
+ * Add non-minified isotope.pkdg.js
+   Needed for debian packaging as we need the source and minified version is
+   not the source (@legoktm #693)
+ * [server] Add a tooltip with the full language for the lang tag.
+ * CI fixes (@kelson42 @legoktm)
+
+libkiwix 10.0.0
+===============
+
+ This release is huge release.
+ The project has been renamed to libkiwix, it is more coherent with the library name.
+
+ * Server front page :
+  - Use js in the front page to display the available book,
+     using the OPDS stream as source. The front page is now populated only with
+     the visible books and user can search for books. (@MananJethwany #530, #541, #534)
+     (@kelson42 #628)
+  - Revamp css (@MananJethwany #559)
+  - Correctly Convert 3iso language code to 2iso (@juuz0 #672)
+
+ * Server suggestions search :
+  - Add pagination for suggestion search (@maneeshpm #591)
+  - Fix suggestion system (@MananJethwany #498)
+  - Provide the kind and path (when adapted) to the suggestion answer (@MananJethwany #464)
+  - The displayed suggestion have now highligth on the searched terms (@maneeshpm #505)
+  - Properly handle html encoding of suggestions (@veloman-yunkan #458)
+
+ * Server improvements :
+  - Remove meta endpoints (@mgautier #669)
+  - Add raw endpoints to get the raw content of a zim (@mgautierfr #646)
+  - Add details on 404 error pages (@soumyankar #490)
+  - Fix headbar insertion when `<head>` tag has attributes (@kelson42 #440)
+  - Better headbar insertion (after charset definition) (@kelson42 #442)
+
+ * New OPDS Stream v2 :
+  - Add a list of categories (@veloman-yunkan)
+  - Support for partial entries (@veloman-yunkan #602)
+  - Support multiple icons size in the OPDS stream (@veloman-yunkan #577 #630)
+  - Add language endpoint to catalog (@veloman-yunkan #553)
+  - Add illustration API to get the illustration of a book (@mgautierfr #645)
+  - OPDS search can now filter books by category (@veloman-yunkan #459)
+
+ * Library improvements :
+  - Allow the libray to be live reloaded when the library.xml changes (@veloman-yunkan #636)
+  - Properly handle removing of book from the library (@veloman-yunkan #485)
+  - Use xapian to search for books in the library (@veloman-yunkan #460, #488)
+
+ * Added methods/functions :
+  - Fix `fileExist` and introduce `fileReadable` (@juuz0 #668)
+  - Add `getVersions` and `printVersions` functions (@kelson42 #665)
+  - Add `getNetworkInterfaces()` and `getBestPublicIP()` functions (@juuz0 #622)
+  - Add `get_zimid()` method to the search result (@maneeshpm #510)
+
+ * Various improvements :
+  - Better secret value for aria2c rpc (@juuz0 #666)
+  - Avoid duplicated Archive/Reader in the Searcher (@veloman-yunkan #648)
+  - Add basic documentation (@mgautierfr #640)
+  - Do not use Reader internally (@maneeshpm #536 #576)
+  - Remove dependency headers from our public headers (@mgautierfr #574)
+  - Downloader now don't write metalink on the filesystem (@kelson42 #502)
+  - Support opening a zim file using a fd (@veloman-yukan #429)
+  - Use C++11 std::thread instead of pthread (@mgautierfr #445)
+  - [READER] Do not crash if zim file has no `Counter` metadata (@mgautierfr #449)
+  - Ensure libzim dependency is compiled with xapian (@mgautierfr #434)
+  - Support video and audio mimetype in `getMediaCount` (@kelson42 #439)
+  - Better parsing of the counterMap (@kelson42 #437)
+  - Adapt libkiwix to libzim 7.0.0 (@mgautierfr #428)
+  - Remove deprecated methods (@mgautierfr)
+  - CI: Build package for Ubuntu Hirsute, Impish and Jammy (@legoktm #431 #568) and remove Groovy
+  - Fix compilation for FreeBSD (@swills g#432)
+  - Many fixes and improvement (@MananJethwany, @maneeshpm, @veloman-yunkan, @mgautierfr)
+
+kiwix-lib 9.4.1
+===============
+
+ * Fix `M/Counter` parsing.
+ * [SERVER] Adjust body padding-top for taskbar
+ * Fix potential crash when stoping a server not started.
+ * Various fix in build system and the CI.
+
+kiwix-lib 9.4.0
+===============
+
+ * [SERVER] Make the headers handling case insensitive.
+ * [SERVER] Make server answer 204 http status code for empty search
+ * [PACKAGING] Made CI build deb packages.
+ * [SERVER] Add a way to prevent taskbar and external link bloquer at article
+   level.
+ * Fix meson file to be compatible with meson 0.45
+ * [SERVER] Update search requests to use pageStart/pageLength instead of
+   pageStart/pageEnd arguments.
+ * [SERVER] Set a fixed favicon size in the main page.
+ * [SERVER] Refactor the response system code to better handling future new
+   libzim api.
+ * Fix segmentation fault around exchange with aria2 process making
+   kiwix-desktop crash at exit.
+
+kiwix-lib 9.3.1
+===============
+
+ * Fix handling of samba path on windows.
+ * Do not include `kiwix_config.h` in public header.
+ * Fix compilation with libmicrohttpd v0.97.1
+ * Increase default test timeout to 160seconds/test.
+ * Add automatic debian packaging.
+ * Use non-minified version of jquery-ui.js
+ * Pass `-latomic` compile option for sh4 architecture.
+ * Make mesion install `kiwix-compile-resources` man page.
+
+kiwix-lib 9.3.0
+===============
+
+ * Add a thread safe method to search suggestions.
+   Old methods are now deprecated.
+
+kiwix-lib 9.2.3
+===============
+
+ * Add test on byte-range
+ * Fix compilation on bionic and windows.
+ * Allow building using debian packaged kainjow-mustache
+ * Pass `-latomic` compile option for architectures that need it
+
+kiwix-lib 9.2.2
+===============
+
+ * Fix handling on empty content in byte range management (wrong assert)
+
+kiwix-lib 9.2.1
+===============
+
+ * Fix support of byte range request.
+
+kiwix-lib 9.2
+=============
+
+ * Add tests
+ * Refactoring server code.
+ * [SERVER] Add HEAD, Etag and If-None-Match support.
+ * [SERVER] Compress opds catalog answers.
+
+kiwix-lib 9.1.2
+===============
+
+ * Do not use the pathToSave if it is empty.
+
+kiwix-lib 9.1.1
+===============
+
+ * Fix the detection of the dataDirectory on windows.
+
+kiwix-lib 9.1.0
+===============
+
+ * [JAVA] Add a method to get the size of an article.
+ * Add a new method to the libray to get the book by path.
+ * Add a option to make the server blocks external link.
+   Links are intercepted by js an redirected to a "portail" page.
+ * [ODPS] Correctly handle book's articleCount and mediaCount.
+
+kiwix-lib 9.0.1
+===============
+
+ * [JAVA] Use a long to store the offset of an article in the zim file instead
+    of an int.
+
+kiwix-lib 9.0.0
+===============
+
+ * [OPDS] Correctly set the id of the OPDS stream.
+ * [OPDS] Do not try to filter the catalog if no filter field is given in the
+   request.
+ * [WINDOWS] Correctly convert path to wide chars when opening the library.xml
+ * [LIBRARY] Remove the function the read file using a native path.
+   All path must be utf8, no need to pass a native path along the utf8 path.
+ * [TEST] Fix tests using the main function of gtest instead of custom one.
+ * [CI] Move to github CI instead of Travis.
+ * The `Book::update` method always update the book's fields. Even if they are
+   not empty.
+ * [JAVA] Add wrapping around the library manager (opds parsing)
+ * [ARIA2] Add api option to start download with option (destination folder)
+ * [OPDS] Fixes about opds parsing, generation (missing attributes)
+   and requesting (server)
+ * Add methods on `Book` to get specific tag values (was on `Reader` only)
+ * Add flavour attribute to `Book`
+ * Fix opensearch description.
+ * Trust the given library.xml (by default) instead of reading the value from
+   the zim files.
+ * [OPDS] Be able to filter the content by name or size.
+ * [WINDOWS] Fix launching subcommand when there is spaces in the path.
+
+kiwix-lib 8.2.2
+===============
+
+ * Improve a few compilation scripts
+
+kiwix-lib 8.2.1
+===============
+
+ * Reintroduce kiwix-serve taskbar
+
+kiwix-lib 8.2.0
+===============
+
+ * More debug information if aria2c command fails
+ * Allow to set kiwix-serve port
+ * Better (dead) bookmarks mgmt
+
+kiwix-lib 8.1.0
+===============
+
+ * Fix pathTools manipulation.
+ * Add missing implementation of getArticleCount and getMediaCount on android.
+ * Correctly convert windows path to utf8.
+ * Add code coverage in the CI
+
+kiwix-lib 8.0.1
+===============
+
+ * Fix join function
+
+kiwix-lib 8.0.0
+===============
+
+ * Add new methods to get all (and new) metadata from the zim file.
+ * Add methods to get the value of a specific tag.
+ * [API Change] Convert tags value to the new convention.
+ * [API Change] Rename `getMatatag` method to `getMetadata`
+ * [ABI Change] Correctly detect executable path in appimage.
+
+kiwix-lib 7.0.0
+===============
+
+ * [API break] Add a argument to kiwix-serve to specify the library to use.
+
+kiwix-lib 6.0.4
+===============
+
+ * Fix HTML rendering of the search result if there is no result.
+ * Do not crash at html rendering if request ask for 0 results (start == end)
+ * Correctly find the executable path if we are using AppImage
+
+kiwix-lib 6.0.3
+===============
+
+ * force one column suggestion in kiwix-serve suggestions
+ * fix fulltext search link in suggestions
+ * UI fixes in kiwix-serve rendering
+
+kiwix-lib 6.0.2
+===============
+
+ * Correctly set the groupId in the pom file.
+
+kiwix-lib 6.0.1
+===============
+
+ * Generate the pom file for android/maven
+
+kiwix-lib 6.0.0
+===============
+
+ * Move the server code in kiwix-lib (from kiwix-serve).
+ * Add unit test on regex functions.
+ * Fix computerAbsolutePath (thread safe, memory leak).
+ * Correctly set the book's path as valid if we construct the book from a
+   reader.
+ * [JNI] Add a method to know if a article is a redirection.
+ * Do not embed the gtest dependency.
+ * [JNI] Add a constructor to JNIKiwixString.
+ * Change order of search of the favicon urls.
+ * Clean a lot of unecessary includes in headers. (potential "API break")
+
+kiwix-lib 5.2.0
+===============
+
+ * kiwix-serve integration (as a seperated process).
+ * Fix crash in the suggestion search.
+ * Better API to filter the library books.
+ * New kiwix-lib application for android. (.aar)
+ * Use ReLinker to link with libkiwix.so in android.
+ * Correctly set the verbosity of zim search.
+
+kiwix-lib 5.1.0
+===============
+
+ * Add function to pause, resume and stop downloads.
+ * Add zim's tags in the opds stream.
+ * Addapt to new libzim 5.0.0 API.
+
+kiwix-lib 5.0.0
+===============
+
+ * Remove error message when trying to open an wrong zim file.
+ * Rewrite `makeTmpDirectory` to not use uuid functions on windows.
+ * [API break] Remove `getNetworkInterfaces` and `getBestPublicIp`.
+ * Remove rpath
+ * Detect infinite (and too long) redirect loops.
+
+kiwix-lib 4.1.0
+===============
+
+ * Allow the library to be filtered by tags.
+ * Fix language mapping.
+ * Update README about mustache dependency.
+
+kiwix-lib 4.0.1
+===============
+
+ * Fix "maybe uninitialize variable" issue.
+ * Ensure path are stored correctly (absolute path) in the library.
+ * [CI] Use the new deps archive xz
+
+kiwix-lib 4.0.0
+===============
+
+ * [API break] Remove support for external index.
+ * Move to the mustache templating system instead of ctpp2.
+ * Make meson.build works for meson>=0.43.0
+ * [API break] Move the basic tools from the `common` directory to `tools`.
+
+kiwix-lib 3.1.1
+===============
+
+ * The OPDS feed book's date must be the date of the book, not the date of the
+ feed generation.
+ * Convert the standard opds date to our format (YYYY-MM-DD)
+ * Remove duplicate language attribute in the libxml dumper.
+ * Create the datadirectory to not fail to write a file in a non-existent
+   directory
+
+kiwix-lib 3.1.0
+===============
+
+ * Add a method to get the favicon url of book (if available).
+ * Move dump code of library.xml in a specific class.
+ * Add a first support to bookmarks
+
+kiwix-lib 3.0.3
+===============
+
+ * Add the 'en' language to the mapping alpha2-code ('en') to alpha3-code
+ ('eng').
+ * Correctly write the 'ArticleCount' and 'MediaCount' in the library.xml.
+ * Correctly fill the book size for the zim file size.
+ * Fix launch of aria2c.
+
+kiwix-lib 3.0.2
+===============
+
+ * Use the correct path separator when computing relativePath on Windows.
+
+kiwix-lib 3.0.1
+===============
+
+ * Small fix about parsing the opdsStream.
+
+kiwix-lib 3.0.0
+===============
+
+ * Change the downloader to use aria2 using a separated process (with rpc)
+   instead of using the libaria2. This simplify a lot the link process to
+   libaria2 on Windows.
+    - kiwix-lib doesn't depend on libaria2 anymore.
+    - kiwix-lib now depends on libcurl.
+ * [API break] Library class API has been updated :
+    - Books are referenced by id, not index. A lot of methods have been
+      updated this way.
+    - Books "list" is now private.
+    - There is no more "current" book.
+    - listBooksIds's filters have been updated.
+ * [API break] Book class API has been updated :
+    - Move the definition of Book in `book.h`.
+    - Use getter/setter methods instead public members.
+    - Size (getSize/setSize) is now returned in bytes, not kB.
+    - Dependending of how the book has been initialized (opdsfeed), the
+      faviconUrl may be stored in the book, the favicon being downloaded when
+      using `getFavicon`.
+    - The path (and indexPath) are always absolute path.
+    - Book has now a downloadId, corresponding to the aria2 download id (if
+      exists)
+  * [API break] Manager class API has been updated :
+    - The manager is mainly use to fill a Libray from a "library.xml" file or
+      opds feed. Other operations (has removeBookById, setBookPath, filter, ...)
+      have been removed.
+    - The manager use a intermediate class (LibraryManipulator) to add book to
+      the library. This dependency injection allow caller code to hook the add
+      of a book to the library.
+    - The manager work on a existing Library. It doesn't how a internal
+      Library.
+  * [API break] OpdsDumper class API has been updated :
+    - dumpOPDSFeed method now take the list of bookIds to dump instead of
+      dumping all books in the library.
+    - OpdsDumper can now dump openSearch result information (total result
+      count, start index, ...).
+  * [API break] Common tools API has been updated :
+    - `base64_encode` and `base64_decode` take std::string as arguments.
+    - New `download` function in networkTools.h using libcurl.
+    - New `getDataDirectory` function in pathTools.
+    - Better `beautifyInteger` and `beautifyFileSize` functions.
+    - New `nodeToString` function serializing a pugi::xml_node to a string.
+    - New `converta2toa3` function to convert alpha2 language code to aplha3
+      language code.
+
+
+kiwix-lib 2.0.2
+===============
+
+ * [Android] Forward c++ errors message de Java world.
+ * Follow redirection of favicon.
+ * Make aria2 dependency optional.
+ * Inculde unistd.h only on unix platform.
+
+kiwix-lib 2.0.1
+===============
+
+ * Fix parsing of url.
+ * Remove unused static resources.
+ * Correctly decode reserved characters in URLs.
+ * Explicitly use icu namespace to allow use of packaged icu lib.
+
+kiwix-lib 2.0.0
+===============
+
+ * Introduce a new API to retrive content from a reader.
+   * Introduce the `Entry` class.
+   * Reader's methods return an `Entry`.
+   * Content and other information can be retrieved from the `Entry`.
+   * Older Reader's methods are depreciated.
+ * Add an `OPDSDumper` class to dump a whole `Library` as an OPDS feed.
+ * Add a tool function to get the content of a file.
+ * Add a tool function to create a tempory directory.
+ * Add a `Downloader` class to download a file.
+ * Allow the manager to populate a `Library` from an OPDS feed.
+ * Try to locate libctpp2 in default system libdir and then fallback in 'lib'
+   directory.
+ * Build kiwix-lib setting RPATH.
+ * Build kiwix-lib without warning (werror=true)
+ * Build kiwix-lib on macos.
+
+kiwix-lib 1.1.1
+===============
+
+ * Correct the name of kiwix-lib (from `kiwixlib`) in meson.build to generate
+   dist archive with the correct name.
+ * Libzim version need to be at least 3.2.0
+
+kiwix-lib 1.1.0
+===============
+
+ * Allow for more than 70 search result per page in html results rendering
+   (kiwix/kiwix-tools#92)
+ * Add a small api to do geo queries.
+ * Add multi-search support in the JNI (#67)
+ * Add an API to get only one part of an article.
+ * Add an API to get direct location of an article content in the zim file.
+ * Improve urlencoding
+ * Fix pagination in html results rendering.
+ * Compile using gcc-5 on Travis.
+ * Allow JNI to access search snippets.
+ * JNI throw an exception instead of returning an invalid object if something
+   goes wrong.
+ * Add doctext documentation. (#116)
+ * Various bug fixes.
+
+kiwix-lib 1.0.0
+===============
+
+ * Correctly regenerate template resource using cttp2c at compilation time.
+ * Suggestion use xapian database when available
+ * Support multi-zim search in kiwix-lib (a search can now search on several
+   embedded database in zims in the same time)
+ * Fix some wording
+ * Fix license issues
+ * Add out argument to jni getContent* method to get the title of article in
+   the same time we get the content
+ * Rename `compile_resources.py` script to `kiwix-compile-resources`
+ * Use static lib when building for android or in "static mode"
+ * Make the ResourceNotFound exception public
+
+kiwix-lib 0.2.0
+===============
+
+ * Generate the snippet from the article content if the snippet is not
+ directly in the database.
+   This provide better snippets as they now depending of the query.
+ * Use the stopwords and the language stored in the fulltext index database to
+ parse the user query.
+ * Remove the indexer functionnality.
+ * Move to C++11 standard.
+ * Use the fulltext search of the zimlib.
+   We still have the fulltext search code in kiwix-lib to be able to search in
+   fulltext index by side of a zim file. (To be remove in the future)
+ * Few API hanges
+   * Change a lot of `Reader` methods to const methods.
+ * Fix some crashes.
