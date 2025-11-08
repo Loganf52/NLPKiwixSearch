@@ -337,6 +337,24 @@ std::pair<std::string, Library::BookIdSet> InternalServer::selectBooks(const Req
   return {queryString, bookIds};
 }
 
+void logSearchPattern(const std::string &pattern) {
+  if (pattern.empty()) return;
+  
+  const char* logPath = "/data/data/com.example.kiwix/files/kiwix_searches.log";
+  
+  std::ofstream logFile(logPath, std::ios::app);
+  
+  if(!logFile.is_open()) {
+    std::cerr << "Failed to open log file: " << logPath << std::endl;
+    return;
+  }
+  
+  logFile << pattern << "\n";
+  if(logFile.fail()) {
+    std::cerr << "Failed to write to log file: " << logPath << std::endl;
+  }
+}
+
 SearchInfo InternalServer::getSearchInfo(const RequestContext& request) const
 {
   auto bookIds = selectBooks(request);
@@ -361,10 +379,7 @@ SearchInfo InternalServer::getSearchInfo(const RequestContext& request) const
     throw Error(nonParameterizedMessage("no-query"));
   }
 
-  if(!pattern.empty()) {
-    std::ofstream logFile("kiwix_searches.log");
-    logFile << pattern << "\n";
-  }
+  logSearchPattern(pattern);
   
   return SearchInfo(pattern, geoQuery, bookIds.second, bookIds.first);
 }
